@@ -1,6 +1,6 @@
 ﻿# 🎓 SAS — Sistema Acadêmico Escolar
 
-Sistema web completo para gestão acadêmica escolar, desenvolvido como Trabalho de Conclusão de Curso (TCC). A aplicação gerencia todo o fluxo administrativo de uma instituição de ensino, desde o cadastro de alunos e servidores até a emissão de documentos oficiais como históricos, boletins e atestados.
+Sistema web completo para gestão acadêmica escolar, desenvolvido como Trabalho de Conclusão de Curso (TCC). A aplicação gerencia o fluxo administrativo de uma instituição de ensino, desde o cadastro de alunos e servidores até a emissão de documentos oficiais como históricos, boletins e atestados.
 
 ![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)
@@ -21,7 +21,8 @@ Sistema web completo para gestão acadêmica escolar, desenvolvido como Trabalho
 - [Credenciais de Acesso (Demo)](#-credenciais-de-acesso-demo)
 - [Estrutura de Pastas](#-estrutura-de-pastas)
 - [Modelo de Dados](#-modelo-de-dados)
-- [Contribuição](#-contribuição)
+- [Status do Projeto](#-status-do-projeto)
+- [Créditos](#-créditos)
 - [Licença](#-licença)
 
 ---
@@ -31,13 +32,15 @@ Sistema web completo para gestão acadêmica escolar, desenvolvido como Trabalho
 O **SAS (Sistema Acadêmico Escolar)** foi projetado para digitalizar e centralizar a gestão escolar, substituindo processos manuais e planilhas por uma aplicação web acessível via navegador. O sistema atende três perfis de usuário distintos, cada um com seu próprio painel e permissões.
 
 ### Problema resolvido
-Escolas que ainda dependem de controles manuais (cadernos de chamada, planilhas de notas, documentos impressos) enfrentam retrabalho, inconsistência de dados e lentidão na emissão de documentos. O SAS resolve esses problemas com uma plataforma integrada e containerizada, pronta para deploy.
+
+Escolas que ainda dependem de controles manuais (cadernos de chamada, planilhas de notas, documentos impressos) enfrentam retrabalho, inconsistência de dados e lentidão na emissão de documentos. O SAS busca resolver esses problemas com uma plataforma integrada e containerizada, que roda em ambiente de desenvolvimento com um único comando.
 
 ---
 
 ## ✨ Funcionalidades
 
 ### 👨‍💼 Painel do Administrador
+
 - Cadastro completo de alunos e servidores (dados pessoais, endereço, filiação, necessidades especiais)
 - Criação e gerenciamento de turmas (etapa, turno, capacidade, sala)
 - Gerenciamento de vínculos professor-disciplina-turma
@@ -50,6 +53,7 @@ Escolas que ainda dependem de controles manuais (cadernos de chamada, planilhas 
 - Listagem de professores e alunos por turma
 
 ### 👨‍🏫 Painel do Professor
+
 - Visualização de turmas vinculadas
 - Caderno de chamada digital (registro de frequência)
 - Lançamento e gestão de notas por disciplina
@@ -59,6 +63,7 @@ Escolas que ainda dependem de controles manuais (cadernos de chamada, planilhas 
 - Calendário acadêmico
 
 ### 👨‍🎓 Painel do Aluno
+
 - Dashboard com visão geral do desempenho
 - Consulta ao boletim detalhado por disciplina
 - Acompanhamento de frequência
@@ -68,16 +73,17 @@ Escolas que ainda dependem de controles manuais (cadernos de chamada, planilhas 
 - Calendário acadêmico
 
 ### 🔐 Autenticação
+
 - Login com seleção de perfil (Admin / Professor / Aluno)
 - Controle de sessão com verificação de permissão por rota
 - Recuperação de senha
-- Senhas armazenadas com hash seguro (password_hash / crypt)
+- Senhas armazenadas com hash
 
 ---
 
 ## 🏗 Arquitetura
 
-`
+```text
 ┌─────────────┐      ┌──────────────────┐      ┌───────────┐
 │  Navegador  │◄────►│  Apache + PHP    │◄────►│  MySQL    │
 │  (Frontend) │      │  (Backend)       │      │  8.0      │
@@ -87,15 +93,16 @@ Escolas que ainda dependem de controles manuais (cadernos de chamada, planilhas 
                      │  phpMyAdmin      │
                      │  (porta 8081)    │
                      └──────────────────┘
-`
+```
 
 O projeto utiliza uma arquitetura **MVC simplificada** com:
-- **Camada CRUD** (includes/crud/): Classes PHP para operações no banco (BaseCRUD, UsuarioCRUD, TurmaCRUD, DisciplinaCRUD, MatriculaCRUD, VinculoCRUD, LocalidadeCRUD)
-- **Camada AJAX** (includes/ajax/): Endpoints assíncronos para operações dinâmicas
-- **Views** (user_adm/, user_professor/, user_aluno/): Páginas PHP com templates Bootstrap
-- **Bootstrap** (includes/bootstrap.php): Arquivo central que inicializa sessão, conexão e controle de acesso
 
-Toda a infraestrutura roda em **Docker**, com três containers orquestrados via docker-compose.yml.
+- **Camada CRUD** (`includes/crud/`): classes PHP para operações no banco (BaseCRUD, UsuarioCRUD, TurmaCRUD, DisciplinaCRUD, MatriculaCRUD, VinculoCRUD, LocalidadeCRUD)
+- **Camada AJAX** (`includes/ajax/`): endpoints assíncronos para operações dinâmicas
+- **Views** (`user_adm/`, `user_professor/`, `user_aluno/`): páginas PHP com templates Bootstrap
+- **Bootstrap** (`includes/bootstrap.php`): arquivo central que inicializa sessão, conexão e controle de acesso
+
+Toda a infraestrutura roda em **Docker**, com três containers orquestrados via `docker-compose.yml`.
 
 ---
 
@@ -104,6 +111,7 @@ Toda a infraestrutura roda em **Docker**, com três containers orquestrados via 
 | Camada | Tecnologia |
 |---|---|
 | **Frontend** | HTML5, CSS3, JavaScript, Bootstrap 4, jQuery |
+| **Template de interface** | Dashtreme (template de terceiros, veja [Créditos](#-créditos)) |
 | **Backend** | PHP 8.2, PDO (prepared statements) |
 | **Banco de Dados** | MySQL 8.0 |
 | **Servidor Web** | Apache (mod_rewrite) |
@@ -120,7 +128,7 @@ Você precisa ter instalado:
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows/Mac) ou Docker Engine + Docker Compose (Linux)
 - [Git](https://git-scm.com/)
 
-> **Nota:** Não é necessário instalar PHP, MySQL ou Apache localmente. O Docker cuida de tudo.
+> **Nota:** não é necessário instalar PHP, MySQL ou Apache localmente. O Docker cuida de tudo.
 
 ---
 
@@ -128,22 +136,23 @@ Você precisa ter instalado:
 
 ### 1. Clone o repositório
 
-`ash
-git clone https://github.com/Santozz06/projeto-sistema-academico.git
-cd projeto-sistema-academico
-`
+```bash
+git clone https://github.com/Santozz06/sistema-academico.git
+cd sistema-academico
+```
 
 ### 2. Suba os containers
 
-`ash
+```bash
 docker-compose up -d --build
-`
+```
 
 Esse comando irá:
+
 - Construir a imagem PHP + Apache a partir do Dockerfile
 - Baixar a imagem do MySQL 8.0
 - Baixar a imagem do phpMyAdmin
-- Importar automaticamente o banco de dados (escola_db.sql)
+- Importar automaticamente o banco de dados (`escola_db.sql`)
 
 > ⏳ **Na primeira execução**, o MySQL pode levar de 1 a 3 minutos para inicializar completamente e importar o banco. O container web aguarda automaticamente via healthcheck.
 
@@ -156,15 +165,15 @@ Esse comando irá:
 
 ### 4. Parar os containers
 
-`ash
+```bash
 docker-compose down
-`
+```
 
 Para remover também os dados do banco (volume):
 
-`ash
+```bash
 docker-compose down -v
-`
+```
 
 ---
 
@@ -180,12 +189,14 @@ O banco de dados já vem populado com usuários de teste:
 
 > Na tela de login, selecione o tipo de usuário correspondente antes de clicar em **Entrar**.
 
+> ⚠️ Essas credenciais e a configuração do phpMyAdmin existem apenas para demonstração local. **Não use em produção.**
+
 ---
 
 ## 📁 Estrutura de Pastas
 
-`
-projeto-sistema-academico/
+```text
+sistema-academico/
 ├── backend/
 │   └── dashtreme-master/
 │       ├── assets/              # CSS, JS, imagens, plugins do template
@@ -207,7 +218,7 @@ projeto-sistema-academico/
 ├── init.sh                      # Script auxiliar de inicialização
 ├── opcache.ini                  # Configuração de cache PHP
 └── README.md
-`
+```
 
 ---
 
@@ -215,7 +226,7 @@ projeto-sistema-academico/
 
 O sistema utiliza as seguintes tabelas principais:
 
-`
+```text
 Usuarios ──────┬──── Alunos
                ├──── Professores ──── Disciplinas
                │                       │
@@ -231,21 +242,21 @@ Usuarios ──────┬──── Alunos
                │
 Calendario_Academico
 Planos_Ensino
-`
+```
 
 **Tabelas:** Usuarios, Alunos, Professores, Turmas, Disciplinas, Matriculas, Notas, Frequencias, Planos_Ensino, Calendario_Academico, Acompanhamento_NEE, Professores_Turmas
 
 ---
 
-## 🤝 Contribuição
+## 📌 Status do Projeto
 
-Contribuições são bem-vindas! Siga os passos:
+Projeto acadêmico desenvolvido para fins educacionais, como Trabalho de Conclusão de Curso. Ele foi pensado para rodar em ambiente local de desenvolvimento e não passou por auditoria de segurança, portanto não é recomendado para uso em produção sem revisão.
 
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (git checkout -b feature/minha-feature)
-3. Commit suas mudanças (git commit -m 'Adiciona minha feature')
-4. Push para a branch (git push origin feature/minha-feature)
-5. Abra um Pull Request
+---
+
+## 🙌 Créditos
+
+A interface do sistema utiliza o template **Dashtreme**, de terceiros, cujos direitos pertencem aos seus respectivos autores. A lógica de negócio, o banco de dados, o backend em PHP e a infraestrutura com Docker foram desenvolvidos por mim.
 
 ---
 
@@ -256,5 +267,5 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](License.txt) par
 ---
 
 <p align="center">
-  Desenvolvido como Trabalho de Conclusão de Curso
+  Desenvolvido por Santozz06 como Trabalho de Conclusão de Curso — IFRS, Campus Rolante
 </p>
