@@ -1,4 +1,4 @@
-﻿🎓 SAS — Sistema Acadêmico Santos
+﻿# 🎓 SAS — Sistema Acadêmico Santos
 
 Sistema web completo para gestão acadêmica escolar, desenvolvido como Trabalho de Conclusão de Curso (TCC). A aplicação gerencia o fluxo administrativo de uma instituição de ensino, desde o cadastro de alunos e servidores até a emissão de documentos oficiais como históricos, boletins e atestados.
 
@@ -29,7 +29,7 @@ Sistema web completo para gestão acadêmica escolar, desenvolvido como Trabalho
 
 ## 💡 Sobre o Projeto
 
-O **SAS (Sistema Acadêmico Escolar)** foi projetado para digitalizar e centralizar a gestão escolar, substituindo processos manuais e planilhas por uma aplicação web acessível via navegador. O sistema atende três perfis de usuário distintos, cada um com seu próprio painel e permissões.
+O **SAS (Sistema Acadêmico Santos)** foi projetado para digitalizar e centralizar a gestão escolar, substituindo processos manuais e planilhas por uma aplicação web acessível via navegador. O sistema atende três perfis de usuário distintos, cada um com seu próprio painel e permissões.
 
 ### Problema resolvido
 
