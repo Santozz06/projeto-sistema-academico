@@ -1,0 +1,58 @@
+services:
+  web:
+    build: .
+    container_name: web-app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./backend/dashtreme-master:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - DB_NAME=escola_db
+      - DB_USER=escola_user
+      - DB_PASS=escola_password
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-school-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: escola_db
+      MYSQL_USER: escola_user
+      MYSQL_PASSWORD: escola_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./escola_db.sql:/docker-entrypoint-initdb.d/escola_db.sql
+    healthcheck:
+      # Aguarda MySQL responder e o schema principal estar disponível
+      test:
+        [
+          "CMD-SHELL",
+          "mysql -uroot -prootpassword -e 'SELECT 1' && mysql -uroot -prootpassword -D escola_db -e 'SELECT 1 FROM Usuarios LIMIT 1' || exit 1",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 60
+      start_period: 180s
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: school-phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpassword
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mysql_data:
